@@ -27,9 +27,14 @@ header {
     color: #C9D68F;
     display: flex;
     justify-content: center;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
     padding: 1rem;
     min-height: 60px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 header h1 {
@@ -80,6 +85,7 @@ header h1 {
 
 .main_nav a:visited {
     text-decoration : none;
+    text-decoration-color: #245F35;
 }
 
 .main_nav li {
@@ -244,20 +250,30 @@ input:focus {
     }
 
     header {
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
         background-color: #245F35;
         color: #C9D68F;
         display: flex;
         justify-content: left;
-        position: relative;
+        position: fixed;
         padding: 1rem;
         min-height: 60px;
     }
 
+    /* burger masqué en desktop */
     .toggle_menu {
-        display: none; /* masqué en desktop */
+        display: none;
+    }
+
+    .main_nav {
+
     }
 
     .main_search_area {
+        margin-top: 70px;
         background-image: url('/public/img/bg-img-desktop.png');
         background-size: cover;
         background-position: center center;

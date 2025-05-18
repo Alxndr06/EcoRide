@@ -18,10 +18,27 @@ $max = date('Y-m-d', strtotime('+1 year'));
 
     <div class="section_separator"></div>
     <div class="second_part_index">
-        <h1>EcoRide</h1>
-        <p>Voyagez de manière écologique<br>
-            avec des covoitureurs soucieux
-            de l’environnement.</p>
+        <h2>EcoRide</h2>
+        <p>
+            <strong>Bienvenue sur EcoRide</strong><br>
+            Ensemble, roulons vers un avenir plus vert 🌍<br><br>
+
+            Grâce à notre plateforme de covoiturage simple et solidaire, trouvez ou proposez facilement des trajets près de chez vous.<br>
+            Que ce soit pour aller au travail, partir en week-end ou faire un trajet régulier,<br>
+            partageons la route tout en réduisant notre impact écologique.<br><br>
+
+            🚗 Moins de voitures, plus de rencontres, et une planète qui respire mieux.
+            <br><br>
+        </p>
+        <div class="section_separator"></div>
+        <h2>Des actes plutôt que de belles paroles</h2>
+        <p>
+            Chez EcoRide, nous valorisons les conducteurs de véhicules propres 🚗💨<br>
+            En réduisant notre marge, nous leur offrons une meilleure rémunération.<br>
+            Moins d’émissions, plus de reconnaissance 🌱
+            <br><br>
+        </p>
+
     </div>
     <a style="align-content: center;" href="index.php?controller=ride&action=list">Test d'affichage des trajets</a>
 </main>
