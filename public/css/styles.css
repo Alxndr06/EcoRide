@@ -36,6 +36,12 @@ header h1 {
     font-size: 30px;
 }
 
+.page_title {
+    color: #8CAF7D;
+    text-align: center;
+    margin: 5%;
+}
+
 .main_nav {
     position: fixed;
     top: -250px; /* caché en dehors de l’écran */
@@ -113,6 +119,7 @@ header h1 {
     position: relative; /* permet de positionner le form à l'intérieur */
 }
 
+/* Search form */
 .search_form {
     position: absolute;
     top: 53%; /* ajuste la hauteur visuelle dans les 300px */
@@ -142,11 +149,18 @@ input:focus {
 
 .search_form button {
     background-color: #245F35;
-    color: #FBF9ED;
+    color: #C9D68F;
     width: 345px;
     height: 40px;
     border-radius: 18px;
     font-size: 15px;
+    border: none;
+    cursor: pointer;
+}
+
+#date-depart {
+    width: 180px;
+    height: 40px;
 }
 
 .section_separator {
@@ -163,6 +177,37 @@ input:focus {
 
 .second_part_index p {
     margin-top: 15px;
+}
+
+/* Resultats de recherches */
+.ride_card_container {
+    justify-content: center;
+    margin: auto;
+    align-self: center;
+    background-color: #FBF9ED;
+    border-radius: 10px;
+    width: 90%;
+    height: 25%;
+    border:1px solid #ccc;
+    padding:10px;
+}
+
+.book_ride_form {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.book_ride_button {
+    text-align: center;
+    background-color: #245F35;
+    color: #FBF9ED;
+    width: 120px;
+    height: 40px;
+    border-radius: 18px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
 }
 
 /* Partie footer */
@@ -190,15 +235,88 @@ input:focus {
 
 
 
+
 /* Desktop responsive */
 @media screen and (min-width: 1024px) {
 
-body {
-    font-size: 18px; /* un peu plus grand pour les écrans larges */
-}
+    body {
+        font-size: 18px; /* un peu plus grand pour les écrans larges */
+    }
+
+    header {
+        background-color: #245F35;
+        color: #C9D68F;
+        display: flex;
+        justify-content: left;
+        position: relative;
+        padding: 1rem;
+        min-height: 60px;
+    }
 
     .toggle_menu {
         display: none; /* masqué en desktop */
+    }
+
+    .main_search_area {
+        background-image: url('/public/img/bg-img-desktop.png');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        height: 505px;
+        position: relative; /* permet de positionner le form à l'intérieur */
+    }
+
+    /* Search bar */
+    .search_form {
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+        position: absolute;
+        background-color: #E8F0DB;
+        padding: 10px 30px 10px 30px;
+        border-radius: 15px;
+        top: 53%; /* ajuste la hauteur visuelle dans les 300px */
+        left: 50%;
+        transform: translateX(-50%); /* uniquement horizontal */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .search_form input {
+        display: flex;
+        width: 210px;
+        height: 50px;
+        background-color: #FBF9ED;
+        color: #245F35;
+        border-radius: 8px;
+        padding-left: 25px;
+        font-size: 20px;
+        border: 1px solid #8CAF7D;
+    }
+
+    input:focus {
+        border: 2px solid #245F35;
+        outline: none;
+    }
+
+    .search_form button {
+        background-color: #245F35;
+        color: #C9D68F;
+        width: 210px;
+        height: 50px;
+        border-radius: 18px;
+        font-size: 20px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .search_form input:hover ,button:hover {
+        transform: scale(1.05);
+    }
+
+    #date-depart {
+        width: 210px;
+        height: 50px;
     }
 
 }
