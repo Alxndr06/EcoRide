@@ -8,4 +8,9 @@ class HomeController extends Controller
     {
         self::render('home/index');
     }
+
+    public function legal()
+    {
+        self::render('home/legal');
+    }
 }

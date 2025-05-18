@@ -20,12 +20,13 @@
             <span></span>
             <span></span>
         </button>
-        <h1>EcoRide</h1>
+        <h1><a title="Accueil du site" href="index.php?controller=home&action=index">EcoRide</a></h1>
         <nav id="main_navbar" class="main_nav">
             <ul>
                 <li><a href="index.php?controller=home&action=index">Accueil</a></li>
-                <li><a href="#">À propos</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#">Rechercher un trajet</a></li>
+                <li><a href="#">Publier un trajet</a></li>
+                <li><a href="#">Mon compte</a></li>
             </ul>
         </nav>
     </header>

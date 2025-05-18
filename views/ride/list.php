@@ -1,5 +1,6 @@
 <?php require_once __DIR__ . "/../partials/header.php"; ?>
 
+<main>
 <h1 class="page_title">Liste des trajets</h1>
 
 <?php foreach ($rideList as $ride) : ?>
@@ -14,5 +15,6 @@
         </form>
     </div>
 <?php endforeach; ?>
+</main>
 
 <?php require_once __DIR__ . '/../partials/footer.php'; ?>

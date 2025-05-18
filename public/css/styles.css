@@ -18,6 +18,11 @@ body {
     color: #245F35;
 }
 
+a, a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
 .page_wrapper {
     flex: 1;
 }
@@ -42,9 +47,14 @@ header h1 {
 }
 
 .page_title {
+    padding-top: 15px;
     color: #8CAF7D;
     text-align: center;
     margin: 5%;
+}
+
+main {
+    margin-top: 70px;
 }
 
 .main_nav {
@@ -128,7 +138,7 @@ header h1 {
 /* Search form */
 .search_form {
     position: absolute;
-    top: 53%; /* ajuste la hauteur visuelle dans les 300px */
+    top: 50%; /* ajuste la hauteur visuelle dans les 300px */
     left: 50%;
     transform: translateX(-50%); /* uniquement horizontal */
     display: flex;
@@ -185,6 +195,7 @@ input:focus {
     margin-top: 15px;
 }
 
+
 /* Resultats de recherches */
 .ride_card_container {
     justify-content: center;
@@ -237,8 +248,9 @@ input:focus {
 
 
 
-
-
+/* ############################################################################################
+                                        RESPONSIVE - DESKTOP & TABLET
+ #############################################################################################*/
 
 
 
@@ -268,12 +280,43 @@ input:focus {
         display: none;
     }
 
-    .main_nav {
 
+
+    .main_nav {
+        position: static;
+        width: auto;
+        height: auto;
+        background-color: transparent;
+        color: inherit;
+        padding: 0;
+        margin-left: auto; /* pousse le menu à droite */
+        display: flex;
+        align-items: center;
+    }
+
+    .main_nav ul {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+    }
+
+    .main_nav li {
+        margin: 0;
+    }
+
+    .main_nav a {
+        color: #C9D68F !important;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.2s ease;
+    }
+
+    .main_nav a:hover {
+        color: #FBF9ED !important;
     }
 
     .main_search_area {
-        margin-top: 70px;
+
         background-image: url('/public/img/bg-img-desktop.png');
         background-size: cover;
         background-position: center center;
@@ -335,4 +378,7 @@ input:focus {
         height: 50px;
     }
 
+    footer {
+        padding: 1.5%;
+    }
 }
