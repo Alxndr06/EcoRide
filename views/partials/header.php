@@ -27,6 +27,7 @@
                 <li><a href="#">Rechercher un trajet</a></li>
                 <li><a href="#">Publier un trajet</a></li>
                 <li><a href="#">Mon compte</a></li>
+                <li><a href="index.php?controller=contact&action=contact">Contact</a></li>
             </ul>
         </nav>
     </header>

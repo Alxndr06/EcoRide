@@ -28,8 +28,7 @@ $max = date('Y-m-d', strtotime('+1 year'));
 
             🚗 Moins de voitures, plus de rencontres, et une planète qui respire mieux.
             <br><br>
-        </p>
-        <div class="section_separator"></div>
+
         <h2>Des actes plutôt que de belles paroles</h2>
         <p>
             Chez EcoRide, nous valorisons les conducteurs de véhicules propres 🚗💨<br>
@@ -37,6 +36,8 @@ $max = date('Y-m-d', strtotime('+1 year'));
             Moins d’émissions, plus de reconnaissance 🌱
             <br><br>
         </p>
+
+        <div class="section_separator"></div>
 
     </div>
     <a style="align-content: center;" href="index.php?controller=ride&action=list">Test d'affichage des trajets</a>
