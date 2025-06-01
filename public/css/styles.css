@@ -133,15 +133,15 @@ main {
     background-position: center center;
     background-repeat: no-repeat;
     height: 505px;
-    position: relative; /* permet de positionner le form à l'intérieur */
+    position: relative;
 }
 
 /* Search form */
 .search_form {
-    position: absolute;
+    position: relative;
     top: 50%; /* ajuste la hauteur visuelle dans les 300px */
     left: 50%;
-    transform: translateX(-50%); /* uniquement horizontal */
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -197,23 +197,116 @@ input:focus {
 }
 
 
-/* Resultats de recherches */
+/* Resultats de recherches pour les trajets */
 .ride_card_container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0;
+    grid-row-gap: 0;
     justify-content: center;
-    margin: auto;
+    margin: auto auto 30px auto;
     align-self: center;
     background-color: #FBF9ED;
     border-radius: 10px;
     width: 90%;
-    height: 25%;
+    height: 250px;
     border:1px solid #ccc;
-    padding:10px;
+    padding:30px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.ride_card_link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease;
+}
+
+/* Details du trajet */
+.ride_details_container {
+    background-color: #FBF9ED;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 25px;
+    width: 90%;
+    max-width: 600px;
+    margin: 30px auto;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.travel_time {
+    display: flex;
+    text-align: end;
+    font-size: 12px;
+}
+
+.driver_detail {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.ride_detail:last-child {
+    border-bottom: none;
+}
+
+.ride_detail .label {
+    font-weight: bold;
+    color: #245F35;
+}
+
+.ride_detail .value {
+    color: #333;
+    text-align: right;
+}
+
+.ride_date {
+    text-align: center;
+}
+
+.ride_pp_driver {
+    grid-area: 1 / 1 / 2 / 2;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid #245F35;
+    margin-bottom: 10px;
+}
+
+.ride_card_driver {
+    grid-area: 1 / 2 / 2 / 3;
+
+}
+
+.ride_card_middle {
+    grid-area: 2 / 1 / 3 / 3;
+}
+
+.ride_card_datetime {
+    margin-bottom: 10px;
 }
 
 .book_ride_form {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
+    grid-area: 3 / 2 / 4 / 3;
+    text-align: center;
+}
+
+.ride_card_price {
+    grid-area: 2 / 3 / 3 / 4;
+    text-align: center;
+}
+
+.ride_card_places {
+    grid-area: 1 / 3 / 2 / 4;
+    text-align: center;
 }
 
 .book_ride_button {
@@ -226,11 +319,29 @@ input:focus {
     font-size: 15px;
     border: none;
     cursor: pointer;
+    margin-top: 10px;
 }
+
+.route_point {
+    padding: 15px;
+    font-size: 20px;
+}
+
+.label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.section_separator {
+    border: none;
+    height: 1px;
+    background-color: #ccc;
+    margin: 20px 0;
+}
+
 
 /* Partie footer */
 .main_footer {
-    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -293,8 +404,6 @@ input:focus {
     .toggle_menu {
         display: none;
     }
-
-
 
     .main_nav {
         position: static;
@@ -390,6 +499,29 @@ input:focus {
     #date-depart {
         width: 210px;
         height: 50px;
+    }
+
+    .ride_card_container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-column-gap: 0;
+        grid-row-gap: 0;
+        justify-content: center;
+        margin: auto auto 30px auto;
+        align-self: center;
+        background-color: #FBF9ED;
+        border-radius: 10px;
+        width: 50%;
+        height: 250px;
+        border:1px solid #ccc;
+        padding:30px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+
+    .ride_card_container:hover {
+        transform: scale(1.03);
+        border: 2px solid #8CAF7D;
     }
 
     .main_footer {
