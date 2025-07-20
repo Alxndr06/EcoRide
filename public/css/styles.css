@@ -213,7 +213,8 @@ input:focus {
     height: 250px;
     border:1px solid #ccc;
     padding:30px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    /*box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;*/
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 }
 
 .ride_card_link {
@@ -240,8 +241,9 @@ input:focus {
 
 .travel_time {
     display: flex;
-    text-align: end;
-    font-size: 12px;
+    font-size: 15px;
+    margin-left: 150px;
+    color: #245F35;
 }
 
 .driver_detail {
@@ -267,6 +269,10 @@ input:focus {
 }
 
 .ride_date {
+    text-align: center;
+}
+
+.ride_seats {
     text-align: center;
 }
 
@@ -322,6 +328,26 @@ input:focus {
     margin-top: 10px;
 }
 
+.page_return_link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #245F35;
+    color: #FBF9ED;
+    border-radius: 18px;
+    font-size: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 20px;
+    width: auto;
+    max-width: 100%;
+}
+
+
+
+.link_container {
+    text-align: center;
+}
+
 .route_point {
     padding: 15px;
     font-size: 20px;
@@ -366,6 +392,28 @@ input:focus {
 .about {
 
 }
+
+.error_message,
+.success_message {
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.error_message {
+    background-color: #ffe5e5;
+    color: #a33;
+    border: 1px solid #f5c2c2;
+}
+
+.success_message {
+    background-color: #e0f0ff; /* Bleu très clair */
+    color: #1565c0;            /* Bleu moyen pour le texte */
+    border: 1px solid #90caf9; /* Bleu clair pour la bordure */
+}
+
 
 
 
@@ -492,7 +540,7 @@ input:focus {
         cursor: pointer;
     }
 
-    .search_form input:hover ,button:hover {
+    .search_form input:hover ,button:hover, .link_container:hover {
         transform: scale(1.05);
     }
 

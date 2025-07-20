@@ -1,10 +1,11 @@
 <?php
 require_once __DIR__ . "/../partials/header.php";
+require_once __DIR__ . "/../../helpers/functions.php";
 ?>
 
 <main>
+    <?= displayErrorOrSuccessMessage(); ?>
     <div class="main_search_area">
-
         <?php include __DIR__ . '/../partials/search_form.php'; ?>
     </div>
 

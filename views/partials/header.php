@@ -27,9 +27,14 @@ require_once __DIR__ . '/../../helpers/functions.php';
         <nav id="main_navbar" class="main_nav">
             <ul>
                 <li><a href="index.php?controller=home&action=index">Accueil</a></li>
-                <li><a href="#">Rechercher un trajet</a></li>
+                <li><a href="index.php?controller=ride&action=list">Rechercher un trajet</a></li>
                 <li><a href="#">Publier un trajet</a></li>
-                <li><a href="#">Mon compte</a></li>
+                <?php if (isset($_SESSION['user'])): ?>
+                    <li><a href="index.php?controller=user&action=dashboard">Tableau de bord</a></li>
+                    <li><a href="index.php?controller=user&action=logout">Déconnexion</a></li>
+                <?php else: ?>
+                    <li><a href="index.php?controller=user&action=login">Connexion</a></li>
+                <?php endif; ?>
                 <li><a href="index.php?controller=contact&action=contact">Contact</a></li>
             </ul>
         </nav>

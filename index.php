@@ -1,4 +1,5 @@
 <?php
+session_start();
 // On charge la configuration
 require_once 'config/config.php';
 // On charge le système de routing

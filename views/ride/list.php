@@ -13,7 +13,7 @@ require_once __DIR__ . "/../partials/header.php";
 
                 <div class="ride_card_driver">
                     <div class="driver_name"><?= htmlspecialchars($ride['prenom']) ?></div>
-                    <div class="driver_rating">⭐ <?= $ride['note_moyenne'] ?? "N/A" ?>/5</div>
+                    <div class="driver_rating">⭐ <?= $ride['note_moyenne'] ?? "N/A" ?></div>
                 </div>
 
                 <div class="ride_card_places">

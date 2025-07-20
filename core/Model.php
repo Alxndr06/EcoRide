@@ -14,7 +14,7 @@ class Model {
         require 'config/config.php';
 
         try {
-            self::$db = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
+            self::$db = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4", DB_USER, DB_PASS);
             self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return self::$db;
         } catch (PDOException $e) {
