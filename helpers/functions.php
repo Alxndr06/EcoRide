@@ -1,4 +1,11 @@
 <?php
+// GESTION DE LA SESSION
+function checkSession() : void
+{
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+}
 
 // GESTION INFORMATIONS UTILISATEURS (USERS ET CONDUCTEURS)
 function displayNoteStars($note) : string

@@ -1,5 +1,9 @@
 <?php
-session_start();
+require_once __DIR__ . '/helpers/functions.php';
+
+// On lance la session
+checkSession();
+
 // On charge la configuration
 require_once 'config/config.php';
 // On charge le système de routing
