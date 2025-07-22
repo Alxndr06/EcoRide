@@ -62,6 +62,18 @@ function checkRole(int $expectedRoleId) : void {
     }
 }
 
+function isUserLoggedIn(): bool {
+    checkSession();
+    return isset($_SESSION['user']) && isset($_SESSION['user']['id']);
+}
+
+function redirectIfLoggedIn(): void {
+    if (isUserLoggedIn()) {
+        redirectWithError('Vous êtes déjà connecté.', 'home', 'index');
+    }
+}
+
+
 // FONCTIONS DE DISPLAY DE MESSAGES ET AUTRES
 
 function displayNoteStars($note) : string

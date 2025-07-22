@@ -19,6 +19,7 @@ require_once __DIR__ . "/../../helpers/functions.php";
 
             <button type="submit" class="btn-full">🔐 Se connecter</button>
         </form>
+        <p>Pas encore de compte ? <a href="index.php?controller=user&action=register">Créez en un !</a></p>
     </div>
 </main>
 
