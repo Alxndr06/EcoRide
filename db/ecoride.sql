@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 21 juil. 2025 à 10:01
+-- Généré le : mar. 22 juil. 2025 à 20:42
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -116,7 +116,8 @@ CREATE TABLE `utilisateurs` (
   `adresse` varchar(50) NOT NULL,
   `date_naissance` varchar(50) NOT NULL,
   `photo` blob DEFAULT NULL,
-  `pseudo` varchar(50) NOT NULL
+  `pseudo` varchar(50) NOT NULL,
+  `role_id` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -182,7 +183,8 @@ ALTER TABLE `roles`
 -- Index pour la table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  ADD PRIMARY KEY (`utilisateur_id`);
+  ADD PRIMARY KEY (`utilisateur_id`),
+  ADD KEY `fk_utilisateur_role` (`role_id`);
 
 --
 -- Index pour la table `voitures`
@@ -258,6 +260,12 @@ ALTER TABLE `avis`
 --
 ALTER TABLE `covoiturages`
   ADD CONSTRAINT `covoiturages_ibfk_1` FOREIGN KEY (`conducteur_id`) REFERENCES `utilisateurs` (`utilisateur_id`);
+
+--
+-- Contraintes pour la table `utilisateurs`
+--
+ALTER TABLE `utilisateurs`
+  ADD CONSTRAINT `fk_utilisateur_role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
