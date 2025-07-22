@@ -4,19 +4,25 @@ require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . "/../helpers/functions.php";
 class UserController extends Controller
 {
-    public function login()
+    public function login() : void
     {
-        self::render('user/login');
+        $csrf_token = getCsrfToken();
+        self::render('user/login', ['csrf_token' => $csrf_token]);
     }
 
-    public function doLogin()
+    public function doLogin() : void
     {
         checkCsrfToken();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $email = $_POST['email'] ?? '';
+            $identifier = $_POST['email'] ?? ''; // champ email OU pseudo
             $password = $_POST['password'] ?? '';
 
-            $user = User::findByEmail($email);
+            // Détection email ou pseudo
+            if (filter_var($identifier, FILTER_VALIDATE_EMAIL)) {
+                $user = User::findByEmail($identifier);
+            } else {
+                $user = User::getByUsername($identifier);
+            }
 
             if ($user && password_verify($password, $user['password'])){
                 $_SESSION['user'] = [
@@ -25,43 +31,43 @@ class UserController extends Controller
                     'nom' => $user['nom'],
                     'prenom' => $user['prenom'],
                     'pseudo' => $user['pseudo'],
-                    'role' => $user['role'],
+                    'role_id' => $user['role_id'],
+                    'role_libelle' => $user['role_libelle'],
                     'adresse' => $user['adresse'],
                     'date_naissance' => $user['date_naissance'],
                     'photo' => $user['photo']
                 ];
-                redirectWithSuccess('Connexion réussie !', 'user', 'dashboard');
+                redirectWithSuccess("Connecté avec succès", 'home');
             } else {
                 redirectWithError('Identifiants invalides.', 'user', 'login');
             }
         }
     }
 
-    public function logout()
+    public function logout() : void
     {
         session_unset();
         session_destroy();
         redirectWithSuccess("Déconnexion réussie.", 'user', 'login');
     }
 
-    public function register()
+    public function register() : void
     {
         self::render('user/register');
     }
 
-    public function doRegister()
+    public function doRegister() : void
     {
 
     }
 
-    public function dashboard()
+    public function dashboard() : void
     {
         checkConnect();
-
         self::render('user/dashboard');
     }
 
-    public function showPhoto()
+    public function showPhoto() : void
     {
         checkConnect();
         //ecrire le rtrste

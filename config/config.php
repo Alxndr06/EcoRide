@@ -20,8 +20,3 @@ if (!defined('BASE_URL')) {
     $basePath = dirname($_SERVER['SCRIPT_NAME']);
     define('BASE_URL', rtrim($basePath, '/'));
 }
-
-
-//if (!defined('BASE_URL')) {
-//    define('BASE_URL', '/Ecoride');
-//};

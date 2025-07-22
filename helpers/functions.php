@@ -8,15 +8,7 @@ function checkSession() : void
 }
 
 // GESTION INFORMATIONS UTILISATEURS (USERS ET CONDUCTEURS)
-function displayNoteStars($note) : string
-{
-    $stars = "";
 
-    for ($i = 0; $i < floor($note); $i++) {
-        $stars .= "⭐";
-    }
-    return $stars;
-}
 
 // GESTION DE LA SESSION ET DE LA SECURITE DES FORMULAIRES
 function getCsrfToken(): string {
@@ -43,6 +35,7 @@ function checkMethodPost() : void {
 }
 
 function checkConnect(): void {
+    checkSession();
     // Durée max de la session (20mn)
     $timeout = 1200;
 
@@ -62,6 +55,24 @@ function checkConnect(): void {
     }
 }
 
+function checkRole(int $expectedRoleId) : void {
+    checkSession();
+    if (!isset($_SESSION['user']) || (int) $_SESSION['user']['role_id'] !== $expectedRoleId) {
+        redirectWithError('Accès refusé.', 'home', 'index');
+    }
+}
+
+// FONCTIONS DE DISPLAY DE MESSAGES ET AUTRES
+
+function displayNoteStars($note) : string
+{
+    $stars = "";
+
+    for ($i = 0; $i < floor($note); $i++) {
+        $stars .= "⭐";
+    }
+    return $stars;
+}
 
 function displayWelcomeMessage(): string {
     if (isset($_SESSION['user'])) {
@@ -76,7 +87,6 @@ function displayWelcomeMessage(): string {
     return '';
 }
 
-
 function displayErrorOrSuccessMessage() : string {
     $message = '';
 
@@ -88,6 +98,14 @@ function displayErrorOrSuccessMessage() : string {
         unset($_SESSION['error']);
     }
     return $message;
+}
+
+
+// GESTION DES REDIRECTIONS
+
+function redirectTo($controller, $action) {
+    header("Location: index.php?controller=$controller&action=$action");
+    exit;
 }
 
 function redirectWithError(string $message, string $controller, string $action = 'index'): void {

@@ -1,6 +1,10 @@
 <?php
 require_once __DIR__ . '/../../config/config.php';
 require_once __DIR__ . '/../../helpers/functions.php';
+
+checkSession();
+
+?>
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -34,6 +38,9 @@ require_once __DIR__ . '/../../helpers/functions.php';
                     <li><a href="index.php?controller=user&action=logout">Déconnexion</a></li>
                 <?php else: ?>
                     <li><a href="index.php?controller=user&action=login">Connexion</a></li>
+                <?php endif; ?>
+                <?php if (isset($_SESSION['user']) && ($_SESSION['user']['role_id'] === 3)): ?>
+                   <li><a href="index.php?controller=admin&action=dashboard">Administration</a></li>
                 <?php endif; ?>
                 <li><a href="index.php?controller=contact&action=contact">Contact</a></li>
             </ul>
