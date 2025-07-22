@@ -15,8 +15,9 @@ class UserController extends Controller
     {
         checkCsrfToken();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $identifier = $_POST['email'] ?? ''; // champ email OU pseudo (thug life)
-            $password = $_POST['password'] ?? '';
+            redirectIfLoggedIn();
+            $identifier = $_POST['email']; // champ email OU pseudo (thug life)
+            $password = $_POST['password'];
 
             // Détection email ou pseudo
             if (filter_var($identifier, FILTER_VALIDATE_EMAIL)) {
@@ -101,6 +102,7 @@ class UserController extends Controller
 
             if (!empty($errors)) {
                 redirectWithError(implode('<br>', $errors), 'user', 'register');
+                return;
             }
 
             // Upload de la pp (blob)
@@ -135,7 +137,6 @@ class UserController extends Controller
         }
     }
 
-
     public function dashboard() : void
     {
         checkConnect();
@@ -145,6 +146,6 @@ class UserController extends Controller
     public function showPhoto() : void
     {
         checkConnect();
-        //ecrire le rtrste
+        //TODO : ecrire le rtrste
     }
 }

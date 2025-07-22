@@ -5,9 +5,10 @@ require_once __DIR__ . "/../../helpers/functions.php";
 
 <main class="dashboard">
     <div class="header-spacer"></div>
+
     <section class="welcome">
         <p class="greeting">Pannel des Employés</p>
-        <p class="role">Avis en attente : <strong>0></strong></p>
+        <p class="role">Avis en attente : <strong>0</strong></p>
     </section>
 
     <section class="actions">

@@ -31,8 +31,8 @@ checkSession();
         <nav id="main_navbar" class="main_nav">
             <ul>
                 <li><a href="index.php?controller=home&action=index">Accueil</a></li>
-                <li><a href="index.php?controller=ride&action=list">Rechercher un trajet</a></li>
-                <li><a href="#">Publier un trajet</a></li>
+                <li><a href="index.php?controller=ride&action=search">Rechercher un trajet</a></li>
+                <li><a href="index.php?controller=ride&action=create">Publier un trajet</a></li>
                 <?php if (isset($_SESSION['user'])): ?>
                     <li><a href="index.php?controller=user&action=dashboard">Tableau de bord</a></li>
                     <li><a href="index.php?controller=user&action=logout">Déconnexion</a></li>
@@ -41,6 +41,9 @@ checkSession();
                 <?php endif; ?>
                 <?php if (isset($_SESSION['user']) && ($_SESSION['user']['role_id'] === 3)): ?>
                    <li><a href="index.php?controller=admin&action=dashboard">Administration</a></li>
+                <?php endif; ?>
+                <?php if (isset($_SESSION['user']) && ($_SESSION['user']['role_id'] === 2)): ?>
+                    <li><a href="index.php?controller=employee&action=dashboard">Espace employé</a></li>
                 <?php endif; ?>
                 <li><a href="index.php?controller=contact&action=contact">Contact</a></li>
             </ul>

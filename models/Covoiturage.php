@@ -83,4 +83,55 @@ class Covoiturage extends Model
 
         return $ride;
     }
+
+    public static function create(array $data): bool {
+        $db = self::getDB();
+
+        $sql = "INSERT INTO covoiturages (lieu_depart, heure_depart, lieu_arrivee, heure_arrivee, date_depart, date_arrivee, duree, prix_personne, nb_place, conducteur_id)
+            VALUES (:lieu_depart, :heure_depart, :lieu_arrivee, :heure_arrivee, :date, :date, :duree, :prix_personne, :nb_place, :conducteur_id)";
+
+        $stmt = $db->prepare($sql);
+
+        return $stmt->execute([
+            ':lieu_depart' => $data['lieu_depart'],
+            ':heure_depart' => $data['heure_depart'],
+            ':lieu_arrivee' => $data['lieu_arrivee'],
+            ':heure_arrivee' => $data['heure_arrivee'],
+            ':date' => $data['date'],
+            ':duree' => $data['duree'],
+            ':prix_personne' => $data['prix_personne'],
+            ':nb_place' => $data['nb_place'],
+            ':conducteur_id' => $data['conducteur_id']
+        ]);
+    }
+
+    public static function search(string $lieu_depart, string $lieu_arrivee, string $date)
+    {
+        $db = self::getDB();
+
+        $sql = "SELECT covoiturages.*, utilisateurs.prenom, utilisateurs.photo,
+                   (
+                       SELECT ROUND(AVG(note), 1)
+                       FROM avis
+                       WHERE avis.conducteur_id = utilisateurs.utilisateur_id
+                       AND avis.statut = 'validé'
+                   ) AS note_moyenne
+            FROM covoiturages
+            JOIN utilisateurs ON covoiturages.conducteur_id = utilisateurs.utilisateur_id
+            WHERE lieu_depart LIKE :lieu_depart
+              AND lieu_arrivee LIKE :lieu_arrivee
+              AND date_depart = :date
+            ORDER BY date_depart, heure_depart";
+
+        $stmt = $db->prepare($sql);
+        $stmt->execute([
+            ':lieu_depart' => "%$lieu_depart%",
+            ':lieu_arrivee' => "%$lieu_arrivee%",
+            ':date' => $date,
+        ]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
 }
