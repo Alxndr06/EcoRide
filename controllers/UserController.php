@@ -6,6 +6,7 @@ class UserController extends Controller
 {
     public function login() : void
     {
+        checkSession();
         redirectIfLoggedIn();
         $csrf_token = getCsrfToken();
         self::render('user/login', ['csrf_token' => $csrf_token]);
@@ -13,7 +14,9 @@ class UserController extends Controller
 
     public function doLogin() : void
     {
+        checkSession();
         checkCsrfToken();
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             redirectIfLoggedIn();
             $identifier = $_POST['email']; // champ email OU pseudo (thug life)
@@ -23,12 +26,12 @@ class UserController extends Controller
             if (filter_var($identifier, FILTER_VALIDATE_EMAIL)) {
                 $user = User::findByEmail($identifier);
             } else {
-                $user = User::getByUsername($identifier);
+                $user = User::findByUsername($identifier);
             }
 
             if ($user && password_verify($password, $user['password'])){
                 $_SESSION['user'] = [
-                    'id' => $user['id'],
+                    'id' => $user['utilisateur_id'],
                     'email' => $user['email'],
                     'nom' => $user['nom'],
                     'prenom' => $user['prenom'],
@@ -39,6 +42,8 @@ class UserController extends Controller
                     'date_naissance' => $user['date_naissance'],
                     'photo' => $user['photo']
                 ];
+                $_SESSION['last_activity'] = time();
+
                 redirectWithSuccess("Connecté avec succès", 'home');
             } else {
                 redirectWithError('Identifiants invalides.', 'user', 'login');
@@ -55,6 +60,7 @@ class UserController extends Controller
 
     public function register() : void
     {
+        checkSession();
         redirectIfLoggedIn();
         $csrf_token = getCsrfToken();
         self::render('user/register', ['csrf_token' => $csrf_token]);
@@ -62,6 +68,7 @@ class UserController extends Controller
 
     public function doRegister(): void
     {
+        checkSession();
         checkCsrfToken();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

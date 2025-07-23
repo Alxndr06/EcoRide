@@ -33,7 +33,6 @@ require_once __DIR__ . "/../../helpers/functions.php";
         <div class="section_separator"></div>
 
     </div>
-    <a style="align-content: center;" href="index.php?controller=ride&action=list">Test d'affichage des trajets</a>
 </main>
 
 <?php require_once __DIR__ . "/../partials/footer.php"; ?>

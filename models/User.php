@@ -15,7 +15,7 @@ class User extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function getById(int $id): array
+    public static function findById(int $id): array
     {
         $db = self::getDB();
         $stmt = $db->prepare("
@@ -28,7 +28,7 @@ class User extends Model
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function getByUsername(string $username)
+    public static function findByUsername(string $username)
     {
         $db = self::getDB();
         $stmt = $db->prepare("
