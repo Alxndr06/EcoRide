@@ -4,8 +4,8 @@ require_once __DIR__ . "/../../helpers/functions.php";
 ?>
 
 <main>
-    <h1 class="page_title">Resultats des recherches</h1>
-    <form method="GET" action="index.php">
+    <h1 class="page_title">Trouvez votre trajet</h1>
+    <form method="GET" action="index.php" class="search-page-form">
         <input type="hidden" name="controller" value="ride">
         <input type="hidden" name="action" value="search">
 

@@ -13,8 +13,6 @@ if (!defined('DB_PASS')) {
     define('DB_PASS', '');
 }
 
-/* Constantes */
-
 // Détection automatique du chemin
 if (!defined('BASE_URL')) {
     $basePath = dirname($_SERVER['SCRIPT_NAME']);

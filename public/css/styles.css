@@ -14,7 +14,7 @@ body {
     flex-direction: column;
     font-family: "Segoe UI", "Noto Sans", "Source Sans 3", Arial, sans-serif;
     font-size: 16px;
-    background-color: #E8F0DB;
+    background-color: #FBF9ED;
     color: #245F35;
 }
 
@@ -162,11 +162,6 @@ main {
     padding-left: 25px;
     font-size: 20px;
     border: 1px solid #8CAF7D;
-}
-
-input:focus {
-    border: 2px solid #245F35;
-    outline: none;
 }
 
 .search_form button {
@@ -636,7 +631,7 @@ input:focus {
     color: #245F35;
 }
 
-.form-container input:focus {
+input:focus {
     outline: none;
     border-color: #245F35;
     box-shadow: 0 0 4px rgba(36, 95, 53, 0.3);
@@ -660,6 +655,65 @@ input:focus {
     background-color: #2e7d32;
 }
 
+/* FORMULAIRE DE RECHERHCE DE TRAJETS */
+
+.search-page-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 90%;
+    max-width: 500px;
+    margin: 30px auto;
+    background-color: #E8F0DB;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.search-page-form label {
+    font-weight: bold;
+    color: #245F35;
+}
+
+.search-page-form input {
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #8CAF7D;
+    background-color: #fff;
+    color: #245F35;
+}
+
+.search-page-form .btn-full {
+    background-color: #245F35;
+    color: #C9D68F;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-page-form .btn-full:hover {
+    background-color: #2e7d32;
+}
+
+.ride_card_container:hover {
+    transform: scale(1.02);
+    border-color: #8CAF7D;
+}
+
+img.ride_pp_driver {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid #245F35;
+    flex-shrink: 0;
+}
 
 
 /* ############################################################################################
@@ -765,11 +819,6 @@ input:focus {
         border: 1px solid #8CAF7D;
     }
 
-    input:focus {
-        border: 2px solid #245F35;
-        outline: none;
-    }
-
     .search_form button {
         background-color: #245F35;
         color: #C9D68F;
@@ -790,24 +839,6 @@ input:focus {
         height: 50px;
     }
 
-    .ride_card_container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        grid-column-gap: 0;
-        grid-row-gap: 0;
-        justify-content: center;
-        margin: auto auto 30px auto;
-        align-self: center;
-        background-color: #FBF9ED;
-        border-radius: 10px;
-        width: 50%;
-        height: 250px;
-        border:1px solid #ccc;
-        padding:30px;
-        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    }
-
     .ride_card_container:hover {
         transform: scale(1.03);
         border: 2px solid #8CAF7D;
@@ -818,40 +849,38 @@ input:focus {
     }
 
     /* DASHBOARD */
-    @media screen and (min-width: 1024px) {
-        .dashboard {
-            padding: 2rem;
-            max-width: 900px;
-        }
+    .dashboard {
+        padding: 2rem;
+        max-width: 900px;
+    }
 
-        .welcome {
-            text-align: left;
-            background-color: #e0f2f1;
-            padding: 2rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-        }
+    .welcome {
+        text-align: left;
+        background-color: #e0f2f1;
+        padding: 2rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+    }
 
-        .greeting {
-            font-size: 1.8rem;
-        }
+    .greeting {
+        font-size: 1.8rem;
+    }
 
-        .actions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
+    .actions {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
 
-        .btn {
-            font-size: 1.1rem;
-            padding: 1.2rem;
-            border-radius: 10px;
-        }
+    .btn {
+        font-size: 1.1rem;
+        padding: 1.2rem;
+        border-radius: 10px;
+    }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        }
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }
 
     /* AFFICHAGE DES EMPLOYES */
@@ -863,4 +892,10 @@ input:focus {
         display: table-cell;
     }
 
+    /* FORMULAIRE DE RECHERCHE DE TRAJET */
+
+    .search-page-form {
+        padding: 35px;
+    }
 }
+

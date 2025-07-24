@@ -5,7 +5,6 @@ require_once __DIR__ . '/../../helpers/functions.php';
 checkSession();
 
 ?>
-?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

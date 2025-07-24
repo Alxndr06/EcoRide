@@ -73,7 +73,6 @@ function redirectIfLoggedIn(): void {
     }
 }
 
-
 // FONCTIONS DE DISPLAY DE MESSAGES ET AUTRES
 
 function displayNoteStars($note) : string
