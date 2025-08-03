@@ -68,22 +68,33 @@ class RideController extends Controller
         }
     }
 
-    public function search()
+    public function search(): void
     {
-        if (!isset($_GET['lieu_depart'], $_GET['lieu_arrivee'], $_GET['date'])) {
-            // Si on n’a pas encore soumis le formulaire, on affiche juste le formulaire
-            self::render('ride/search');
+        $filters = [
+            'lieu_depart'   => $_GET['lieu_depart']   ?? '',
+            'lieu_arrivee'  => $_GET['lieu_arrivee']  ?? '',
+            'date'          => $_GET['date']          ?? '',
+            'date_from'     => $_GET['date_from']     ?? '',
+            'date_to'       => $_GET['date_to']       ?? '',
+            'prix_min'      => $_GET['prix_min']      ?? '',
+            'prix_max'      => $_GET['prix_max']      ?? '',
+            'nb_place'      => $_GET['nb_place']      ?? '',
+            'status'        => $_GET['status']        ?? '',
+        ];
+
+        $anyFilter = array_filter($filters, function($v){ return $v !== ''; });
+        if (empty($anyFilter)) {
+            // on passe simplement les filtres vides pour pré-remplir le formulaire
+            self::render('ride/search', ['filters' => $filters]);
             return;
         }
 
-        $lieu_depart = $_GET['lieu_depart'];
-        $lieu_arrivee = $_GET['lieu_arrivee'];
-        $date = $_GET['date'];
+        $rideList = Covoiturage::search($filters);
 
-        $results = Covoiturage::search($lieu_depart, $lieu_arrivee, $date);
-
-        self::render('ride/search_results', ['rideList' => $results]);
+        self::render('ride/search_results', [
+            'rideList' => $rideList,
+            'filters'  => $filters
+        ]);
     }
-
 
 }

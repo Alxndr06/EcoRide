@@ -105,31 +105,83 @@ class Covoiturage extends Model
         ]);
     }
 
-    public static function search(string $lieu_depart, string $lieu_arrivee, string $date)
+    public static function search(array $filters): array
     {
-        $db = self::getDB();
+        $db    = self::getDB();
+        $sql   = "SELECT c.*, u.prenom, u.photo,
+                          (
+                            SELECT ROUND(AVG(note),1)
+                            FROM avis
+                            WHERE avis.conducteur_id = u.utilisateur_id
+                              AND avis.statut = 'validé'
+                          ) AS note_moyenne
+                  FROM covoiturages c
+                  JOIN utilisateurs u 
+                    ON c.conducteur_id = u.utilisateur_id";
 
-        $sql = "SELECT covoiturages.*, utilisateurs.prenom, utilisateurs.photo,
-                   (
-                       SELECT ROUND(AVG(note), 1)
-                       FROM avis
-                       WHERE avis.conducteur_id = utilisateurs.utilisateur_id
-                       AND avis.statut = 'validé'
-                   ) AS note_moyenne
-            FROM covoiturages
-            JOIN utilisateurs ON covoiturages.conducteur_id = utilisateurs.utilisateur_id
-            WHERE lieu_depart LIKE :lieu_depart
-              AND lieu_arrivee LIKE :lieu_arrivee
-              AND date_depart = :date
-            ORDER BY date_depart, heure_depart";
+        $conds  = [];
+        $params = [];
+
+        // Filtre sur lieu de départ
+        if (!empty($filters['lieu_depart'])) {
+            $conds[]              = "c.lieu_depart LIKE :lieu_depart";
+            $params[':lieu_depart'] = '%' . $filters['lieu_depart'] . '%';
+        }
+
+        // Filtre sur lieu d'arrivée
+        if (!empty($filters['lieu_arrivee'])) {
+            $conds[]                 = "c.lieu_arrivee LIKE :lieu_arrivee";
+            $params[':lieu_arrivee'] = '%' . $filters['lieu_arrivee'] . '%';
+        }
+
+        // Filtre date exacte
+        if (!empty($filters['date'])) {
+            $conds[]           = "c.date_depart = :date";
+            $params[':date']   = $filters['date'];
+        }
+        // ou plage de dates
+        if (!empty($filters['date_from'])) {
+            $conds[]                 = "c.date_depart >= :date_from";
+            $params[':date_from']    = $filters['date_from'];
+        }
+        if (!empty($filters['date_to'])) {
+            $conds[]               = "c.date_depart <= :date_to";
+            $params[':date_to']    = $filters['date_to'];
+        }
+
+        // Prix minimum
+        if (isset($filters['prix_min']) && $filters['prix_min'] !== '') {
+            $conds[]               = "c.prix_personne >= :prix_min";
+            $params[':prix_min']   = $filters['prix_min'];
+        }
+        // Prix maximum
+        if (isset($filters['prix_max']) && $filters['prix_max'] !== '') {
+            $conds[]               = "c.prix_personne <= :prix_max";
+            $params[':prix_max']   = $filters['prix_max'];
+        }
+
+        // Nombre de places
+        if (isset($filters['nb_place']) && $filters['nb_place'] !== '') {
+            $conds[]               = "c.nb_place >= :nb_place";
+            $params[':nb_place']   = $filters['nb_place'];
+        }
+
+        // On peut aussi forcer le statut si besoin, ex: only pending
+        if (!empty($filters['status'])) {
+            $conds[]               = "c.statut = :status";
+            $params[':status']     = $filters['status'];
+        }
+
+        // Construit la clause WHERE
+        if (count($conds) > 0) {
+            $sql .= " WHERE " . implode(" AND ", $conds);
+        }
+
+        // Tri par date etheure de départ
+        $sql .= " ORDER BY c.date_depart, c.heure_depart";
 
         $stmt = $db->prepare($sql);
-        $stmt->execute([
-            ':lieu_depart' => "%$lieu_depart%",
-            ':lieu_arrivee' => "%$lieu_arrivee%",
-            ':date' => $date,
-        ]);
-
+        $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 

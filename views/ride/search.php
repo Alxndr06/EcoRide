@@ -1,25 +1,57 @@
-<?php
-require_once __DIR__ . "/../partials/header.php";
-require_once __DIR__ . "/../../helpers/functions.php";
-?>
+<?php require_once __DIR__ . '/../partials/header.php'; ?>
 
 <main>
     <h1 class="page_title">Trouvez votre trajet</h1>
-    <form method="GET" action="index.php" class="search-page-form">
+
+    <form method="get" action="index.php" class="search-page-form">
         <input type="hidden" name="controller" value="ride">
-        <input type="hidden" name="action" value="search">
+        <input type="hidden" name="action"     value="search">
 
-        <label for="lieu_depart">Départ</label>
-        <input type="text" name="lieu_depart" id="lieu_depart" required>
+        <div>
+            <label for="lieu_depart">Départ</label>
+            <input
+                    type="text"
+                    id="lieu_depart"
+                    name="lieu_depart"
+                    required
+                    value="<?= htmlspecialchars($filters['lieu_depart'] ?? '') ?>"
+            >
+        </div>
 
-        <label for="lieu_arrivee">Arrivée</label>
-        <input type="text" name="lieu_arrivee" id="lieu_arrivee" required>
+        <div>
+            <label for="lieu_arrivee">Arrivée</label>
+            <input
+                    type="text"
+                    id="lieu_arrivee"
+                    name="lieu_arrivee"
+                    required
+                    value="<?= htmlspecialchars($filters['lieu_arrivee'] ?? '') ?>"
+            >
+        </div>
 
-        <label for="date">Date</label>
-        <input type="date" name="date" id="date" required>
+        <div>
+            <label for="date">Date</label>
+            <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    value="<?= htmlspecialchars($filters['date'] ?? '') ?>"
+            >
+        </div>
+
+        <div>
+            <label for="nb_place">Nombre de places</label>
+            <input
+                    type="number"
+                    id="nb_place"
+                    name="nb_place"
+                    min="1"
+                    value="<?= htmlspecialchars($filters['nb_place'] ?? '') ?>"
+            >
+        </div>
 
         <button type="submit" class="btn-full">Rechercher</button>
     </form>
 </main>
 
-<?php require_once __DIR__ . "/../partials/footer.php"; ?>
+<?php require_once __DIR__ . '/../partials/footer.php'; ?>

@@ -196,25 +196,49 @@ main {
     margin-top: 15px;
 }
 
-
 /* Resultats de recherches pour les trajets */
+
+.ride-results {
+    display: grid;
+    gap: var(--spacing-lg);
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    padding: var(--spacing);
+}
+
 .ride_card_container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 0;
-    grid-row-gap: 0;
-    justify-content: center;
-    margin: auto auto 30px auto;
-    align-self: center;
-    background-color: #FBF9ED;
-    border-radius: 10px;
-    width: 90%;
-    height: 250px;
-    border:1px solid #ccc;
-    padding:30px;
-    /*box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;*/
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    grid-template-columns: 80px 1fr;
+    gap: var(--gap);
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid var(--color-secondary);
+    border-radius: var(--radius);
+    padding: var(--spacing);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.ride_card_container > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.95rem;
+}
+
+.ride_card_container a {
+    grid-column: 2;
+    justify-self: end;
+    align-self: end;
+    padding: 0.4rem 0.8rem;
+    background: var(--color-primary);
+    color: var(--text-light);
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    transition: background var(--transition), transform var(--transition);
+}
+
+.ride_card_container a:hover {
+    background: var(--color-secondary);
+    transform: translateY(-2px);
 }
 
 .ride_card_link {
@@ -277,14 +301,12 @@ main {
 }
 
 .ride_pp_driver {
-    grid-area: 1 / 1 / 2 / 2;
     width: 80px;
     height: 80px;
     border-radius: 50%;
     object-fit: cover;
     object-position: center;
-    border: 1px solid #245F35;
-    margin-bottom: 10px;
+    border: 2px solid var(--color-secondary);
 }
 
 .ride_card_driver {
@@ -718,8 +740,8 @@ input:focus {
 }
 
 .ride_card_container:hover {
-    transform: scale(1.02);
-    border-color: #8CAF7D;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 img.ride_pp_driver {
@@ -856,10 +878,10 @@ img.ride_pp_driver {
         height: 50px;
     }
 
-    .ride_card_container:hover {
-        transform: scale(1.03);
-        border: 2px solid #8CAF7D;
+    .ride_card_container {
+        max-width: 600px;
     }
+
 
     .main_footer {
         font-size: 14px;
