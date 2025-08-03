@@ -25,7 +25,7 @@ class Router {
 
         //Vérification de l'existence de la méthode
         if(!method_exists($controller, $action)) {
-            die("Action '$action' does not exist in controller '$class'");
+            die("Action '$action' does not exist");
         }
 
         //Appel de la méthode
